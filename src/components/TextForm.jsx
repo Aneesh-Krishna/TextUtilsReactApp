@@ -30,6 +30,11 @@ export default function TextForm({heading = 'Enter the text!'}) {
         window.speechSynthesis.speak(msg);
     }
 
+    const handleExtraSpacesClick = () => {
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "));
+    }
+
     const [text, setText] = useState('Enter the text here')
     // setText("Type something..");  //Correct way to update text
   return (
@@ -40,6 +45,7 @@ export default function TextForm({heading = 'Enter the text!'}) {
             <button className="btn btn-primary my-2" onClick={handleUpClick}>Convert to Uppercase</button>
             <button className="btn btn-secondary my-2 mx-1" onClick={handleLowClick}>Convert to Lowercase</button>
             <button className="btn btn-primary my-2" onClick={handleSpeechClick}>To Speech</button>
+            <button className="btn btn-primary mx-1" onClick={handleExtraSpacesClick}>RemoveExtraSpaces</button>
         </div>
         <div className="container my-3">
             <h3>Your text summary</h3>
