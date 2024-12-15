@@ -26,7 +26,7 @@ export default function TextForm({heading = 'Enter the text!'}) {
 
     const handleSpeechClick = (eventSpeech) => {
         let msg = new SpeechSynthesisUtterance();
-        msg.text = text;
+        msg.text = text.length > 0 ? text : "Please enter some text.";
         window.speechSynthesis.speak(msg);
     }
 
@@ -39,7 +39,7 @@ export default function TextForm({heading = 'Enter the text!'}) {
             <textarea className="form-control" value={text} onChange={handleOnChange} /* placeholder='Enter your text here..' */ id="myTextBox" rows="5"></textarea>
             <button className="btn btn-primary my-2" onClick={handleUpClick}>Convert to Uppercase</button>
             <button className="btn btn-secondary my-2 mx-1" onClick={handleLowClick}>Convert to Lowercase</button>
-            <button className="btn btn-primary my-2 mx-1" onClick={handleSpeechClick}>To Speech</button>
+            <button className="btn btn-primary my-2" onClick={handleSpeechClick}>To Speech</button>
         </div>
         <div className="container my-3">
             <h3>Your text summary</h3>
