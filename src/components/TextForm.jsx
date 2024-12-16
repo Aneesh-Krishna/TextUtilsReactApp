@@ -4,12 +4,13 @@ import React, { useState } from 'react'
 //     text : 'Enter the text!',
 // };
 
-export default function TextForm({heading = 'Enter the text!', mode}) {
+export default function TextForm({heading = 'Enter the text!', mode, showAlert}) {
     const handleUpClick = () => {
         //console.log("Uppercase clicked! Text => " + text)
         let newText = text.toUpperCase();
         setText(newText)
         //console.log(newText)
+        showAlert("Converted to uppercase", "info")
     }
 
     const handleLowClick = (eventLow) => {
@@ -17,6 +18,7 @@ export default function TextForm({heading = 'Enter the text!', mode}) {
         let newText = text.toLowerCase();
         setText(newText)
         //console.log(newText)
+        showAlert("Converted to lowercase", "info")
     }
 
     const handleOnChange = (event) => {
@@ -29,10 +31,11 @@ export default function TextForm({heading = 'Enter the text!', mode}) {
         msg.text = text.length > 0 ? text : "Please enter some text.";
         window.speechSynthesis.speak(msg);
     }
-
+    
     const handleExtraSpacesClick = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
+        showAlert("Extra spaces removed", "success")
     }
 
     const [text, setText] = useState('Enter the text here')

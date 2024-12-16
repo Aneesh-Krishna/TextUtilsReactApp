@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function About() {
+export default function About({mode}) {
 
   const [myStyle, setMyStyle] = useState ({
     color : 'white',
@@ -31,47 +31,22 @@ export default function About() {
   }  
 
   return (
-    <div className="container my-2" style={myStyle}>
-        <h4 className="mx-2 my-2">About Us</h4>
+    <div className={`container my-2 text-${mode === 'light' ? 'dark' : 'light'}`}>
+        <h4 className="mx-2 my-2" style={{color: mode === 'light' ? 'black' : 'white'}}>About Us</h4>
     <div className="accordion accordion-flush" id="accordionFlushExample" style={{border: '1px solid black'}}>
-        <div className="accordion-item" style={myStyle}>
+        <div className="accordion-item" style={{color: mode === 'light' ? 'black' : 'white', backgroundColor: mode === 'light' ? 'white' : 'black'}}>
             <h2 className="accordion-header">
-                <button className="accordion-button collapsed" style={myStyle} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                    Accordion Item #1
+                <button className="accordion-button collapsed" style={{color: mode === 'light' ? 'black' : 'white', backgroundColor: mode === 'light' ? 'white' : 'black'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Application
                 </button>
             </h2>
-            <div id="flush-collapseOne" className="accordion-collapse collapse" style={myStyle} data-bs-parent="#accordionFlushExample">
+            <div id="flush-collapseOne" className="accordion-collapse collapse" style={{color: mode === 'light' ? 'black' : 'white', backgroundColor: mode === 'light' ? 'white' : 'black'}} data-bs-parent="#accordionFlushExample">
                 <div className="accordion-body">
-                    Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.
-                </div>
-            </div>
-        </div>
-        <div className="accordion-item">
-            <h2 className="accordion-header">
-            <button className="accordion-button collapsed" style={myStyle} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                Accordion Item #2
-            </button>
-            </h2>
-            <div id="flush-collapseTwo" className="accordion-collapse collapse" style={myStyle} data-bs-parent="#accordionFlushExample">
-                <div className="accordion-body">
-                    Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.
-                </div>
-            </div>
-        </div>
-        <div className="accordion-item">
-            <h2 className="accordion-header">
-                <button className="accordion-button collapsed" style={myStyle} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                    Accordion Item #3
-                </button>
-            </h2>
-            <div id="flush-collapseThree" className="accordion-collapse collapse" style={myStyle} data-bs-parent="#accordionFlushExample">
-                <div className="accordion-body">
-                    Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.
+                    This is a text utility application which you can make use of to manipulate texts. You can paste any text in the text-area in the home page and convert the whole text into upper/lower case, remove extra spaces in the text, You can also use the "To Speech" function to hear the text!
                 </div>
             </div>
         </div>
     </div>
-    <button className="btn btn-primary my-1" onClick={toggleStyle} type="button">{btnText}</button>
     </div>
   )
 }
