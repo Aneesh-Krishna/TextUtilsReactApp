@@ -7,6 +7,11 @@ import React, { useState } from 'react'
 export default function TextForm({heading = 'Enter the text!', mode, showAlert}) {
     const handleUpClick = () => {
         //console.log("Uppercase clicked! Text => " + text)
+        if(text.length === 0)
+        {
+            showAlert("Enter something to convert!", "warning")
+            return;
+        }
         let newText = text.toUpperCase();
         setText(newText)
         //console.log(newText)
@@ -15,6 +20,11 @@ export default function TextForm({heading = 'Enter the text!', mode, showAlert})
 
     const handleLowClick = (eventLow) => {
         //console.log("Lowercase clicked! Text => " + text)
+        if(text.length === 0)
+            {
+                showAlert("Enter something to convert!", "warning")
+                return;
+            }
         let newText = text.toLowerCase();
         setText(newText)
         //console.log(newText)
@@ -28,11 +38,16 @@ export default function TextForm({heading = 'Enter the text!', mode, showAlert})
 
     const handleSpeechClick = (eventSpeech) => {
         let msg = new SpeechSynthesisUtterance();
-        msg.text = text.length > 0 ? text : "Please enter some text.";
+        msg.text = text.length > 0 ? text : "Please enter some text to hear!";
         window.speechSynthesis.speak(msg);
     }
     
     const handleExtraSpacesClick = () => {
+        if(text.length === 0)
+            {
+                showAlert("Enter something!", "warning")
+                return;
+            }
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
         showAlert("Extra spaces removed", "success")
@@ -52,7 +67,7 @@ export default function TextForm({heading = 'Enter the text!', mode, showAlert})
         </div>
         <div className={`container my-3 text-${mode === 'light' ? 'dark' : 'light'}`}>
             <h3>Your text summary</h3>
-            <p>Your text has {text.length === 0 ? 0 : text.trim('').split(" ").length} words and {text.length} characters.</p>
+            <p>Your text has {text.split(/\s+/).filter((element) => {return element.length != 0}).length} words and {text.length} characters.</p>
             <p>Estimated average time to read the text will be { text.length === 0 ? 0 : text.trim().split(" ").length * 0.0032 } minutes.</p>
         </div>
     </div>
